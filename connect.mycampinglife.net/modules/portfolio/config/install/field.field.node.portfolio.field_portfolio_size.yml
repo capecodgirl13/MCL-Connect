@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_portfolio_size
+    - node.type.portfolio
+    - taxonomy.vocabulary.portfolio_size
+id: node.portfolio.field_portfolio_size
+field_name: field_portfolio_size
+entity_type: node
+bundle: portfolio
+label: 'Portfolio Size'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      portfolio_size: portfolio_size
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

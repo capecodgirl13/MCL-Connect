@@ -1,0 +1,82 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.portfolio.body
+    - field.field.node.portfolio.field_image
+    - field.field.node.portfolio.field_layout_mode
+    - field.field.node.portfolio.field_media
+    - field.field.node.portfolio.field_portfolio_category
+    - field.field.node.portfolio.field_portfolio_client
+    - field.field.node.portfolio.field_portfolio_client_link
+    - field.field.node.portfolio.field_portfolio_extended
+    - field.field.node.portfolio.field_portfolio_link
+    - field.field.node.portfolio.field_portfolio_size
+    - field.field.node.portfolio.field_portfolio_skills
+    - field.field.node.portfolio.field_portfolio_testimonial
+    - field.field.node.portfolio.field_tags
+    - field.field.node.portfolio.field_thumbnail
+    - node.type.portfolio
+  module:
+    - image
+    - text
+    - user
+id: node.portfolio.teaser
+targetEntityType: node
+bundle: portfolio
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 3
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  field_portfolio_category:
+    type: entity_reference_label
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    region: content
+  field_thumbnail:
+    type: image
+    weight: 4
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+  flag_portfolio:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flippy_pager:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_image: true
+  field_layout_mode: true
+  field_media: true
+  field_portfolio_client: true
+  field_portfolio_client_link: true
+  field_portfolio_extended: true
+  field_portfolio_link: true
+  field_portfolio_size: true
+  field_portfolio_skills: true
+  field_portfolio_testimonial: true
+  field_tags: true
+  langcode: true

@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.portfolio.unflag
+label: Unlike
+type: node
+plugin: 'flag_action:portfolio.unflag'
+configuration:
+  flag_id: portfolio
+  flag_action: unflag

@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: about_us
+label: 'About Us'
+description: ''
+use_admin_theme: false
+path: /about-us
+access_logic: and
+access_conditions: {  }
+parameters: {  }

@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.portfolio.flag
+label: Like
+type: node
+plugin: 'flag_action:portfolio.flag'
+configuration:
+  flag_id: portfolio
+  flag_action: flag

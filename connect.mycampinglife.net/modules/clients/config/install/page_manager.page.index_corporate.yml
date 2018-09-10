@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: index_corporate
+label: 'Index Corporate'
+description: ''
+use_admin_theme: false
+path: /index-corporate
+access_logic: and
+access_conditions: {  }
+parameters: {  }

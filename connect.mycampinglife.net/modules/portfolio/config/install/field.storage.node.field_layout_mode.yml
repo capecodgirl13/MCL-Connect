@@ -1,0 +1,59 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_layout_mode
+field_name: field_layout_mode
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: small_slider
+      label: 'Small Slider'
+    -
+      value: wide_slider
+      label: 'Wide Slider'
+    -
+      value: fullwidth_slider
+      label: 'Fullwidth Slider'
+    -
+      value: gallery_slider
+      label: 'Gallery Slider'
+    -
+      value: carousel
+      label: Carousel
+    -
+      value: medias
+      label: Medias
+    -
+      value: fullwidth_video
+      label: 'Fullwidth Video'
+    -
+      value: masonry_images
+      label: 'Masonry Images'
+    -
+      value: left_sidebar
+      label: 'Left Sidebar'
+    -
+      value: right_sidebar
+      label: 'Right Sidebar'
+    -
+      value: left_right_sidebar
+      label: 'Left and Right Sidebars'
+    -
+      value: sticky_sidebar
+      label: 'Sticky Sidebar'
+    -
+      value: extended
+      label: Extended
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,15 @@
+name = Dynamic content listing filters
+description = Filter nodes
+core = 7.x
+
+dependencies[] = views:views
+dependencies[] = better_exposed_filters:better_exposed_filters
+dependencies[] = entity:entity
+dependencies[] = token
+dependencies[] = views_ui
+
+; Information added by Drupal.org packaging script on 2018-07-12
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "dynamic_content_type_filters"
+datestamp = "1531382271"

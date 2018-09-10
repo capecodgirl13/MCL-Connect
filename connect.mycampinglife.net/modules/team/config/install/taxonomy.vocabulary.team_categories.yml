@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Team Categories'
+vid: team_categories
+description: ''
+hierarchy: 0
+weight: 0

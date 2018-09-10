@@ -1,0 +1,13 @@
+name: 'Social Event Type'
+description: 'Provides and event types taxonomy for the event content type.'
+type: module
+# core: 8.x
+dependencies:
+  - social_event:social_event
+package: Social
+
+# Information added by Drupal.org packaging script on 2018-08-30
+version: '8.x-3.0'
+core: '8.x'
+project: 'social'
+datestamp: 1535647105

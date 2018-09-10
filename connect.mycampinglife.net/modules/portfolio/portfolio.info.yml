@@ -1,0 +1,26 @@
+name: Portfolio
+description: 'Provides Portfolio content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - block
+  - block_class
+  - block_content
+  - captcha
+  - content_translation
+  - field
+  - flag
+  - image
+  - image_url_formatter
+  - language
+  - menu_ui
+  - node
+  - options
+  - page_manager
+  - panels
+  - path
+  - system
+  - taxonomy
+  - text
+  - user
+  - views

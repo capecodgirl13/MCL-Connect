@@ -1,0 +1,19 @@
+name: Team
+description: 'Provides Team content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - block_content
+  - captcha
+  - field
+  - image
+  - image_url_formatter
+  - menu_ui
+  - node
+  - page_manager
+  - panels
+  - path
+  - taxonomy
+  - text
+  - user
+  - views

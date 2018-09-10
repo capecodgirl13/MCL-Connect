@@ -1,0 +1,16 @@
+name: 'Social User'
+description: 'Provides User related configuration.'
+type: module
+# core: 8.x
+dependencies:
+  - drupal:block
+  - field_group:field_group
+  - drupal:user
+  - drupal:views
+package: Social
+
+# Information added by Drupal.org packaging script on 2018-08-30
+version: '8.x-3.0'
+core: '8.x'
+project: 'social'
+datestamp: 1535647105

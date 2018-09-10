@@ -1,0 +1,279 @@
+<?php
+
+/**
+ * @file
+ * Provides functionality to search the node content screen.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function dynamic_content_type_filters_views_api() {
+  return array("api" => "3");
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function dynamic_content_type_filters_block_info() {
+  $blocks['dynamic_content_type_filters'] = array(
+    // The name that will appear in the block list.
+    'info' => t('Content Types'),
+    // Default setting.
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * Prepares the contents of the block.
+ */
+function dynamic_content_type_filters_block_view($delta = '') {
+  switch ($delta) {
+    case 'dynamic_content_type_filters':
+      $block['subject'] = t('Content Types');
+      if (user_access('access content')) {
+        $result = node_type_get_types();
+        $items = array();
+        foreach ($result as $key => $node) {
+          $items[] = array(
+            'data' => l($node->name, 'content-listing/' . $node->type),
+          );
+        }
+       // No content in the last week.
+        if (empty($items)) {
+          $block['content'] = t('No content types available.');
+        }
+        else {
+          // Pass data through theme function.
+          $block['content'] = theme('item_list', array(
+            'items' => $items));
+        }
+      }
+    return $block;
+  }
+
+}
+
+/**
+ * Implements hook_permission().
+ */
+function dynamic_content_type_filters_permission() {
+  return array(
+    'access current_posts content' => array(
+      'title' => t('Access content for the Current posts module'),
+    )
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dynamic_content_type_filters_form_alter(&$form, &$form_state, $form_id) {
+    if ($form_id == 'views_exposed_form') {
+        $view = $form_state['view'];
+        if ($view->name == 'content_listing' && $view->current_display == 'page') {
+            if (arg(1)) {
+                $contentType = arg(1);
+                $formKeys = array_keys($form);
+
+                $result = _get_all_available_form_fields($contentType, $formKeys);
+
+                $form['custom_filter']['#weight'] = -1;
+                $form['custom_filter']['#prefix'] = '<div class="custom-filter-div" id="custom-filter-div">';
+                $form['custom_filter']['#suffix'] = '</div>';
+                $form['custom_filter']['#printed'] = TRUE;
+
+                $form['custom_filter']['filteroptions'] = array(
+                        '#title' => t('Add Filter'),
+                        '#type' => 'select',
+                        '#options' => $result['options'],
+                        '#prefix' => '<div class="custom-filter-div" id="custom-filter-div">',
+                        '#suffix' => '</div>',
+                );
+
+                $unsetFieldKeys = _get_all_form_fields_to_unset($form_state['input'], $result['form_field_names']);
+
+                // Unset not required elements
+                if (!empty($unsetFieldKeys)) {
+                    foreach ($unsetFieldKeys as $key => $hideElement) {
+                        $fieldName = $key;
+                        $info_key = 'filter-' . $fieldName;
+                        $op_filed = $key.'_op';
+                        unset($form[$fieldName]);
+                        unset($form[$op_filed]);
+                        unset($form['#info'][$info_key]);
+                        unset($form_state['view']->display_handler->options['filters'][$fieldName]);
+                        unset($form_state['view']->display_handler->handlers['filter'][$fieldName]);
+                        unset($form_state['view']->filter[$fieldName]);
+                    }
+                }
+
+                $form['#attached']['js'] = array(
+                  drupal_get_path('module', 'dynamic_content_type_filters') . '/js/custom_filter.js',
+                );
+            }
+        }
+    }
+    return $form;
+}
+
+/**
+ * Implements custom function to get all the content type fields
+ */
+function _get_all_available_form_fields($contentType, $formKeys) {
+    $formFieldNames = array();
+    $fieldSuffixArray = array('_value', '_tid');
+
+    $result = field_info_instances("node", $contentType);
+    $fields = array();
+    $fields[''] = '--Select--';
+    $fields['title'] = 'Title';
+    $formFieldNames['title'] = 'Title';
+
+    foreach ($result as $key => $field) {
+
+        foreach ($fieldSuffixArray as $fieldSuffix) {
+            $fieldFilterName = $field['field_name'].$fieldSuffix;
+            if (in_array($fieldFilterName, $formKeys) || in_array($fieldFilterName, $formKeys)) {
+                $fields[$fieldFilterName] = $field['label'];
+                $formFieldNames[$fieldFilterName] = $fieldFilterName;
+            }
+        }
+    }
+    return array('options' => $fields, 'form_field_names' => $formFieldNames);
+}
+
+/**
+ * Implements custom function to get fields array for unset
+ */
+function _get_all_form_fields_to_unset($formKeys, $options) {
+    $keysDiff = array();
+    foreach ($formKeys as $key => $option) {
+        if (!array_key_exists($key, $options)) {
+            $keysDiff[$key] = $key;
+        } else if (in_array($key.'_op', $keysDiff)) {
+            unset($keysDiff[$key.'_op']);
+        }
+    }
+    return $keysDiff;
+}
+
+
+/**
+ * Implements hook_views_pre_render()
+ */
+function dynamic_content_type_filters_views_pre_render(&$view) {
+    if ($view->name == 'content_listing' && $view->current_display == 'page') {
+        drupal_add_css(drupal_get_path('module', 'dynamic_content_type_filters') .'/css/content_filter.css');
+        $contentType = arg(1);
+        $types = node_type_get_types();
+        $human_name = $types[$contentType]->name;
+        $view->build_info['title'] = $human_name;
+    }
+}
+
+/**
+ * Implements hook_form_alter()
+ */
+function dynamic_content_type_filters_form_field_ui_field_overview_form_alter(&$form, &$form_state) {
+    $submitHandler = $form['#submit'];
+    $submitHandler[] = 'field_ui_field_overview_form_attach_view_field';
+    $form['#submit'] = $submitHandler;
+}
+
+/**
+ * Implements custom submit handler
+ */
+function field_ui_field_overview_form_attach_view_field($form, &$form_state) {
+    $newField = $form_state['values']['fields']['_add_new_field'];
+
+    $exceptionalFieldTypes = array ('file', 'image');
+    if (!in_array($newField['type'], $exceptionalFieldTypes)) {
+        $view  = views_get_view('content_listing');
+        $multiple = '';
+        if ($newField['type'] == 'taxonomy_term_reference') {
+            $suffix = '_tid';
+        } else {
+            $suffix = '_value';
+        }
+
+        $fieldName = $newField['field_name'];
+        $fieldLabel = $newField['label'];
+        $newArray = array ( "id" => $fieldName . $suffix,
+                        "table" => "field_data_" . $fieldName . "",
+                        "field" => $fieldName . $suffix,
+                        "relationship" => "none",
+                        "group_type" => "group",
+                        "ui_name" => "",
+                        "group" => "1",
+                        "exposed" => "1",
+                        "expose" => Array
+                            (
+                                "operator_id" => $fieldName . $suffix . "_op",
+                                "label" => $fieldLabel,
+                                "description" => "",
+                                "use_operator" => "1",
+                                "operator_label" => "",
+                                "operator" => $fieldName . $suffix . "_op",
+                                "identifier" => $fieldName . $suffix,
+                                "required" => 0,
+                                "remember" => 0,
+                                "multiple" => $multiple,
+                            ),
+
+                        "is_grouped" => "",
+                        "group_info" => Array
+                            (
+                                "label" => "",
+                                "description" => "",
+                                "identifier" => "",
+                                "optional" => 1,
+                                "widget" => "select",
+                                "multiple" => "",
+                                "remember" => 0,
+                                "default_group" => "All",
+                                "default_group_multiple" => Array
+                                    (
+                                    ),
+
+                                "group_items" => Array
+                                    (
+                                    ),
+
+                            ),
+
+            );
+
+        if ($newField['type'] == 'taxonomy_term_reference') {
+            $newArray['type'] = 'select';
+            $newArray['limit'] = 1;
+        }
+
+        foreach ($view->display as $key => $display) {
+            $view->display[$key]->display_options['filters'][$fieldName . $suffix] = $newArray;
+        }
+        views_save_view($view);
+    }
+}
+
+
+/**
+ * Implement hook_theme_registry_alter()
+ */
+function dynamic_content_type_filters_theme_registry_alter(&$theme_registry) {
+  $theme_registry['views_exposed_form']['theme paths'] = array(0 => drupal_get_path('module', 'dynamic_content_type_filters') . '/theme');
+  $theme_registry['views_exposed_form']['theme path'] = drupal_get_path('module', 'dynamic_content_type_filters') . '/theme';
+  $theme_registry['views_exposed_form']['path'] = drupal_get_path('module', 'dynamic_content_type_filters') . '/theme';
+  $theme_registry['views_exposed_form']['template'] = 'views-exposed-form--content-listing';
+}
+
+/**
+ * Implement hook_preprocess_views_exposed_form
+ */
+function dynamic_content_type_filters_preprocess_views_exposed_form(&$variables) {
+  $form = &$variables['form'];
+  $variables['filteroptions'] = $form['custom_filter'];
+}

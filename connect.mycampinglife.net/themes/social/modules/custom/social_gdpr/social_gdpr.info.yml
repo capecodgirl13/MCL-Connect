@@ -1,0 +1,14 @@
+name: Social GDPR
+type: module
+description: Integrate Data Policy module.
+# core: 8.x
+package: Social
+configure: social_gdpr.data_policy.revisions
+dependencies:
+  - data_policy:data_policy
+
+# Information added by Drupal.org packaging script on 2018-08-23
+version: '8.x-2.4'
+core: '8.x'
+project: 'social'
+datestamp: 1535037800

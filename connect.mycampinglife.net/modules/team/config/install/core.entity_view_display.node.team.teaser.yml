@@ -1,0 +1,90 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.team.body
+    - field.field.node.team.field_facebook_link
+    - field.field.node.team.field_image
+    - field.field.node.team.field_linkedin_link
+    - field.field.node.team.field_team_job
+    - field.field.node.team.field_thumbnail
+    - field.field.node.team.field_twitter_link
+    - image.style.thumbnail_253x253
+    - node.type.team
+  module:
+    - image
+    - image_url_formatter
+    - text
+    - user
+id: node.team.teaser
+targetEntityType: node
+bundle: team
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 1
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  field_facebook_link:
+    type: string
+    weight: 7
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  field_image:
+    type: image_url
+    weight: 2
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+      url_type: ''
+    third_party_settings: {  }
+    region: content
+  field_linkedin_link:
+    type: string
+    weight: 6
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  field_team_job:
+    type: entity_reference_label
+    weight: 5
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_thumbnail:
+    type: image
+    weight: 3
+    label: hidden
+    settings:
+      image_style: thumbnail_253x253
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+  field_twitter_link:
+    type: string
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true

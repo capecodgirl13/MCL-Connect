@@ -1,0 +1,16 @@
+name: Testimonials
+description: 'Provides Testimonials content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - block
+  - block_class
+  - captcha
+  - field
+  - image
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
+  - views

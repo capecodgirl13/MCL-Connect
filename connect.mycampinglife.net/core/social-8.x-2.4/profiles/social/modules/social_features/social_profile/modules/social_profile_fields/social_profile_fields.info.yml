@@ -1,0 +1,15 @@
+name: 'Social Profile Fields'
+description: 'Provides hiding fields on a per profile_type basis'
+type: module
+# core: 8.x
+package: Social (experimental)
+configure: social_profile_fields.settings
+dependencies:
+  - drupal:user
+  - social_profile:social_profile
+
+# Information added by Drupal.org packaging script on 2018-08-23
+version: '8.x-2.4'
+core: '8.x'
+project: 'social'
+datestamp: 1535037800

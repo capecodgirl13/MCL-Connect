@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies: {  }
+id: portfolio
+label: Portfolio
+bundles:
+  - portfolio
+entity_type: node
+global: true
+weight: 0
+flag_short: Like
+flag_long: ''
+flag_message: ''
+unflag_short: Unlike
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:node'
+link_type: reload
+flagTypeConfig:
+  show_in_links:
+    full: full
+    teaser: teaser
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig:
+  flag_confirmation: 'Enter flagging details'
+  unflag_confirmation: 'Unflag this content?'
+  edit_flagging: 'Edit flagging details'

@@ -1,0 +1,169 @@
+h1, .header__site-name {
+    font-size: 1.5rem!important;
+    line-height: 0rem!important;
+    margin-bottom: 1.5rem!important;
+    margin-top: 0.5rem!important;
+}
+
+.icon-delete {
+    background-image: url('../images/icon_delete.gif');
+    background-repeat: no-repeat;
+    padding-left: 30px !important;
+    padding-top: 6px!important;
+}
+
+.delete-field > label {
+    background-color: #3a87ad;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 10.998px;
+    font-weight: bold;
+    padding: 7px 7px 8px;
+    line-height: 14px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+body {
+    color: #333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.views-exposed-widget.form-element-div {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0 0 9px;
+}
+
+.form-element-div-row{
+    float: left;
+    padding-right: 20px;
+    width: 33%;
+}
+
+.form-submit {
+    float: right;
+    background-color: #49afcd;
+    background-image: -moz-linear-gradient(center top , #5bc0de, #2f96b4);
+    background-repeat: repeat-x;
+    border-color: #2f96b4 #2f96b4 #1f6377;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 0;
+    padding: 4px 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
+.views-exposed-widget.views-submit-button {
+    //width: 75%;
+    padding: 5px!important;
+}
+
+.views-exposed-form .views-exposed-widget {
+    //float: none!important;
+}
+
+.form-table__row, .form-table tbody tr, form table tbody tr {
+    line-height: 30px;
+}
+
+.form-select {
+    height: 28px;
+}
+
+input, textarea, select {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #555;
+    font-size: 13px;
+    height: 28px;
+    line-height: 18px;
+    margin-bottom: 9px;
+    padding: 4px;
+}
+
+select {
+    width: 226px;
+}
+
+.block-admin-filters {
+    background-color: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 9px 0;
+}
+
+.block-admin-filters .block__title {
+    margin-right: -15px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    color: #999;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+    padding: 3px 15px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+
+.block-admin-filters li { line-height: 18px; list-style: outside none none;}
+
+.block-admin-filters  li  a {
+    padding: 3px 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    display: block;
+    color: #08c;
+    text-decoration: none;
+    line-height: 18px;
+}
+
+.views-exposed-widget.views-reset-button {
+    padding: 5px !important;
+}
+
+.custom-filter-div {
+    display: inline-table;
+    float: left;
+}
+
+.views-exposed-widgets {
+    width: 75%;
+}
+
+.views-exposed-widgets-buttons.clearfix {
+    float: right;
+    width: 155px;
+}
+
+.form-table__header, .form-table th, form table th {
+    background-color: #e0e0e0;
+    line-height: 30px;
+    border: 1px solid #cccccc!important;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px!important;
+}
+
+.form-table__row, .form-table tbody tr, form table tbody tr:nth-child(even){background-color: #f9f9f9;}

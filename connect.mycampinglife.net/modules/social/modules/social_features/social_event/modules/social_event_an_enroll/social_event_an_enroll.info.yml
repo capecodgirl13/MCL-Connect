@@ -1,0 +1,14 @@
+name: 'Social Event AN Enroll'
+description: 'Provides ability to enroll to an event without having to create an account.'
+type: module
+# core: 8.x
+package: Social
+dependencies:
+  - 'social_event:social_event'
+  - 'social_event_managers:social_event_managers'
+
+# Information added by Drupal.org packaging script on 2018-08-30
+version: '8.x-3.0'
+core: '8.x'
+project: 'social'
+datestamp: 1535647105

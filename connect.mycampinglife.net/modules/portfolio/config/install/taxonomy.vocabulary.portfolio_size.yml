@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Portfolio Size'
+vid: portfolio_size
+description: ''
+hierarchy: 0
+weight: 0

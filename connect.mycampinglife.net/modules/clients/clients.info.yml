@@ -1,0 +1,17 @@
+name: Clients
+description: 'Provides Clients content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - block_content
+  - captcha
+  - field
+  - image
+  - menu_ui
+  - node
+  - page_manager
+  - panels
+  - path
+  - text
+  - user
+  - views
